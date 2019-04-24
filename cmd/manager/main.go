@@ -21,11 +21,16 @@ import (
 )
 
 var log = logf.Log.WithName("cmd")
+var bridge string
 
 func printVersion() {
 	log.Info(fmt.Sprintf("Go Version: %s", runtime.Version()))
 	log.Info(fmt.Sprintf("Go OS/Arch: %s/%s", runtime.GOOS, runtime.GOARCH))
 	log.Info(fmt.Sprintf("operator-sdk Version: %v", sdkVersion.Version))
+}
+
+func init() {
+	flag.StringVar(&bridge, "br", "br0", "witch ovs bridge do you want to connect?")
 }
 
 func main() {
